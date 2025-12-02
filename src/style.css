@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
+
+html {
+    font-size: 16px; /* ensures 1rem = 16px reference */
+}
+
+body {
+    font-size: 1rem; /* 12pt ≈ 1rem baseline */
+    font-family: arial;
+    color: black;
+}
+
+main, header, footer, nav ul {
+    max-width: 40rem;
+    margin: 0 auto;
+}
+
+header {
+    background-image: url("../img/polacks.jpg");
+    background-size: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 12.5rem; /* 200px */
+    opacity: 0.5;
+}
+
+header h1 {
+    width: 40rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5rem; /* 18pt */
+}
+
+h3 {
+    font-size: 1.083rem; /* 13pt */
+}
+
+section {
+    padding: 0.75rem; 
+    margin: 0.5rem 0;  
+}
+
+.burger-section {
+    background-color: black;
+    color: white;
+    border: 0.15rem dotted white;
+}
+
+.burger-section p {
+    color: white;
+}
+
+.burger-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.burger {
+    text-align: center;
+}
+
+.burger h3 {
+    margin-bottom: 0.5rem;
+}
+
+.burger img {
+    display: block;
+    margin: 0 auto 0.5rem auto;
+}
+
+.burger ul {
+    padding-left: 1.2rem;
+    text-align: left;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.allergy {
+    font-weight: bold;
+}
+
+.customer-section {
+    border: 0.15rem dotted black;
+}
+
+input[type="radio"] {
+    height: 0.7rem;
+    width: 0.7rem;
+}
+
+.order-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 15rem;     
+    height: 6rem; 
+
+    padding: 0.5rem;
+    background-color: #e6e6e6;
+    border: 0.125rem solid #000; /* 2px */
+    border-radius: 1rem;
+
+    margin-top: 2rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.scooter-icon {
+    width: 6.25rem; /* 100px */
+    height: auto;
+    margin-bottom: 0.3rem;
+}
+
+.scooter-icon g {
+    transition: stroke 0.2s ease;
+}
+
+.order-button:hover {
+    background-color: #0b7a53;
+    color: #fff;
+}
+
+.order-button:hover .scooter-icon g {
+    stroke: #fff;
+}
