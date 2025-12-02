@@ -1,6 +1,6 @@
 {
   "name": "1md031-lab-2024",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev:frontend": "vite",
@@ -10,16 +10,16 @@
   "dependencies": {
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
-    "vue": "^3.5.12",
-    "vue-router": "^4.4.5"
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.13.0",
-    "@vitejs/plugin-vue": "^5.1.4",
-    "concurrently": "^9.0.1",
-    "eslint": "^9.13.0",
-    "eslint-plugin-vue": "^9.29.0",
-    "nodemon": "^3.1.7",
-    "vite": "^7.1.12"
+    "@eslint/js": "^9.39.1",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-vue": "^10.6.2",
+    "nodemon": "^3.1.11",
+    "vite": "^7.2.6"
   }
 }
