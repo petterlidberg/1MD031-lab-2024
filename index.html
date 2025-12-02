@@ -1,1 +1,154 @@
-Hello world
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>BurgerHeaven</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <header>
+            <h1>Välkommen till BurgerHeaven</h1>
+        </header>
+        <main>
+            <h2>Select burger</h2>
+            <p>This is where you execute burger selection</p>
+
+            <table>
+                <tr>
+                    <th>The Fire Burger</th>
+                    <th>Fried Turkey Burger</th>
+                    <th>A Double w/ Cheese</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img
+                            width="256"
+                            height="256"
+                            src="/img/fire-burger.png"
+                            alt="The Fire Burger"
+                        />
+                    </td>
+                    <td>
+                        <img
+                            width="256"
+                            height="256"
+                            src="./img/fried-turkey-burger.png"
+                            alt="Fried Turkey Burger"
+                        />
+                    </td>
+                    <td>
+                        <img
+                            width="256"
+                            height="256"
+                            src="./img/double-cheese-burger.png"
+                            alt="A Double with Cheese"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>750 kCal</li>
+                            <li>Contains lactose</li>
+                            <li>Contains gluten</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>600 kCal</li>
+                            <li>Contains lactose</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>1800 kCal</li>
+                            <li>Contains lactose</li>
+                            <li>Contains gluten</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <h2>Customer information</h2>
+            <p>This is where you provide necessary information</p>
+
+            <h3>Delivery information:</h3>
+
+            <form>
+                <p>
+                    Full name<br />
+                    <input
+                        type="text"
+                        name="fullname"
+                        placeholder="First- and Last name"
+                    />
+                </p>
+
+                <p>
+                    E-mail<br />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="E-mail address"
+                    />
+                </p>
+
+                <p>
+                    Street<br />
+                    <input
+                        type="text"
+                        name="street"
+                        placeholder="Street name"
+                    />
+                </p>
+
+                <p>
+                    House<br />
+                    <input
+                        type="number"
+                        name="house"
+                        placeholder="House number"
+                    />
+                </p>
+
+                <p>
+                    Payment options<br />
+                    <select name="payment">
+                        <option>Credit card</option>
+                        <option>Invoice</option>
+                        <option>Cash on delivery</option>
+                    </select>
+                </p>
+
+                <p>Gender</p>
+                <p>
+                    <input type="radio" name="gender" value="male" /> Male<br />
+                    <input type="radio" name="gender" value="female" />
+                    Female<br />
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="undisclosed"
+                        checked
+                    />
+                    Do not wish to provide
+                </p>
+
+                <p>
+                    <button type="submit">
+                        <img
+                            src="./img/delivery-scooter.png"
+                            width="150"
+                            height="150"
+                            alt="Delivery scooter"
+                        />
+                        Place my order!
+                    </button>
+                </p>
+            </form>
+        </main>
+        <footer>
+            <hr />
+            <p>&copy; 2025 Lidberg Burgers Inc.</p>
+        </footer>
+    </body>
+</html>
