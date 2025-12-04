@@ -196,6 +196,9 @@ export default {
         getOrderNumber: function () {
             return Math.floor(Math.random() * 100000);
         },
+        updateOrderedBurgers(data) {
+            this.orderedBurgers[data.name] = data.amount;
+        },
         addOrder: function (event) {
             var offset = {
                 x: event.currentTarget.getBoundingClientRect().left,
