@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>BurgerHeaven</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/src/style.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Välkommen till BurgerHeaven</h1>
+        </header>
+        <main>
+            <section class="burger-section">
+				<h2>Select burger</h2>
+				<p>This is where you execute burger selection</p>
+				<div class="burger-grid">
+					<div class="burger">
+						<h3>The Fire Burger</h3>
+						<img
+							width="175"
+							height="175"
+							src="/img/fire-burger.png"
+							alt="The Fire Burger"
+						/>
+						<ul>
+							<li>750 kCal</li>
+							<li>Contains <span class="allergy">lactose</span></li>
+							<li>Contains <span class="allergy">gluten</span></li>
+						</ul>
+					</div>
+					<div class="burger">
+						<h3>Fried Turkey Burger</h3>
+						<img
+							width="175"
+							height="175"
+							src="./img/fried-turkey-burger.png"
+							alt="Fried Turkey Burger"
+						/>
+						<ul>
+							<li>600 kCal</li>
+							<li>Contains <span class="allergy">lactose</span></li>
+						</ul>
+					</div>
+					<div class="burger">
+						<h3>A Double w/ Cheese</h3>
+						<img
+							width="175"
+							height="175"
+							src="./img/double-cheese-burger.png"
+							alt="A Double with Cheese"
+						/>
+						<ul>
+							<li>1800 kCal</li>
+							<li>Contains <span class="allergy">lactose</span></li>
+							<li>Contains <span class="allergy">gluten</span></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			
+			<section class="customer-section">
+				<h2>Customer information</h2>
+				<p>This is where you provide necessary information</p>
+	
+				<h3>Delivery information:</h3>
+	
+				<form>
+					<p>
+						Full name<br />
+						<input
+							type="text"
+							name="fullname"
+							placeholder="First- and Last name"
+						/>
+					</p>
+	
+					<p>
+						E-mail<br />
+						<input
+							type="email"
+							name="email"
+							placeholder="E-mail address"
+						/>
+					</p>
+	
+					<p>
+						Street<br />
+						<input
+							type="text"
+							name="street"
+							placeholder="Street name"
+						/>
+					</p>
+	
+					<p>
+						House<br />
+						<input
+							type="number"
+							name="house"
+							placeholder="House number"
+						/>
+					</p>
+	
+					<p>
+						Payment options<br />
+						<select name="payment">
+							<option>Credit card</option>
+							<option>Invoice</option>
+							<option>Cash on delivery</option>
+						</select>
+					</p>
+	
+					<p>
+						Gender<br />
+						<label>
+							<input type="radio" name="gender" value="male" />
+							Male
+						</label>
+						<br />
+					
+						<label>
+							<input type="radio" name="gender" value="female" />
+							Female
+						</label>
+						<br />
+					
+						<label>
+							<input type="radio" name="gender" value="nonbinary" />
+							Non-binary
+						</label>
+						<br />
+					
+						<label>
+							<input type="radio" name="gender" value="undisclosed" checked />
+							Do not wish to provide
+						</label>
+					</p>
+					<button type="submit" class="order-button">
+							<svg
+								class="scooter-icon"
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 200 120"
+								width="150"
+								height="150"
+							>
+								<g
+									fill="none"
+									stroke="#0b7a53"
+									stroke-width="4"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<circle cx="50" cy="90" r="18" />
+									<circle cx="145" cy="90" r="18" />
+						
+									<rect x="25" y="22" width="55" height="35" rx="4" ry="4" />
+						
+									<path d="M35 65 H105" />
+						
+									<path
+										d="M35 65
+										   Q60 60 75 70
+										   Q85 75 95 82
+										   H120
+										   Q135 82 145 72"
+									/>
+						
+									<path
+										d="M145 72
+										   Q135 50 135 35
+										   H150
+										   Q160 35 160 45
+										   V55"
+									/>
+						
+									<path d="M135 30 H155" />
+						
+									<circle cx="160" cy="35" r="6" />
+								</g>
+							</svg>
+							Place my order!
+					</button>
+				</form>
+			</section>
+			
+        </main>
+        <footer>
+            <hr />
+            <p>&copy; 2025 Lidberg Burgers Inc.</p>
+        </footer>
+    </body>
+</html>
