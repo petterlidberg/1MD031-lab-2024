@@ -162,6 +162,7 @@
 <script>
 import Burger from "../components/OneBurger.vue";
 import io from "socket.io-client";
+import menu from "../assets/menu.json";
 
 const socket = io("localhost:3000");
 
@@ -188,7 +189,7 @@ export default {
     },
     data: function () {
         return {
-            burgers: burgerMenuItems,
+            burgers: menu,
         };
     },
     methods: {
