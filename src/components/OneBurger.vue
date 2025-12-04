@@ -11,6 +11,9 @@
                 Contains <span class="allergy">lactose</span>
             </li>
         </ul>
+        <p>Ordered: {{ amountOrdered }}</p>
+        <button @click="decrease">−</button>
+        <button @click="increase">+</button>
     </div>
 </template>
 
@@ -20,6 +23,30 @@ export default {
     props: {
         burger: Object,
     },
+    data() {
+        return {
+            amountOrdered: 0,
+        };
+    },
+    methods: {
+        increase() {
+            this.amountOrdered++;
+            this.$emit("update-order", {
+                name: this.burger.name,
+                amount: this.amountOrdered,
+            });
+        },
+
+        decrease() {
+            if (this.amountOrdered > 0) {
+                this.amountOrdered--;
+                this.$emit("update-order", {
+                    name: this.burger.name,
+                    amount: this.amountOrdered,
+                });
+            }
+        },
+    },
 };
 </script>
 
@@ -28,7 +55,12 @@ export default {
 .burger h3 {
     margin-bottom: 0.5rem;
 }
-
+.burger button {
+    margin: 0 0.15rem;
+}
+.burger p {
+    color: yellow;
+}
 .burger img {
     display: block;
     margin: 0 auto 0.5rem auto;
