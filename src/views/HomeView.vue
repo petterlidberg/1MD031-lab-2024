@@ -41,23 +41,20 @@
                     />
                 </p>
 
-                <p>
-                    Street<br />
-                    <input
-                        type="text"
-                        name="street"
-                        placeholder="Street name"
-                    />
-                </p>
-
-                <p>
-                    House<br />
-                    <input
-                        type="number"
-                        name="house"
-                        placeholder="House number"
-                    />
-                </p>
+                <p>Where living?</p>
+                <div id="map-container">
+                    <div id="map" @click="setLocation">
+                        <div
+                            class="target"
+                            :style="{
+                                left: location.x + 'px',
+                                top: location.y + 'px',
+                            }"
+                        >
+                            T
+                        </div>
+                    </div>
+                </div>
 
                 <p>
                     Payment options<br />
@@ -180,7 +177,7 @@ const burgerMenuItems = [
     new MenuItem("Berger", 500, "/img/double-cheese-burger.png", false, false),
 ];
 
-console.log(burgerMenuItems);
+// console.log(burgerMenuItems);
 
 export default {
     name: "HomeView",
@@ -190,6 +187,19 @@ export default {
     data: function () {
         return {
             burgers: menu,
+            burgerText: "Välj en burgare",
+            fullName: "",
+            email: "",
+            streetName: "",
+            streetNumber: "",
+            payment: "SMS lån",
+            gender: "burgir",
+            orderedBurgers: {},
+
+            location: {
+                x: 0,
+                y: 0,
+            },
         };
     },
     methods: {
@@ -198,6 +208,17 @@ export default {
         },
         updateOrderedBurgers(data) {
             this.orderedBurgers[data.name] = data.amount;
+        },
+        setLocation(event) {
+            const offset = {
+                x: event.currentTarget.getBoundingClientRect().left,
+                y: event.currentTarget.getBoundingClientRect().top,
+            };
+
+            this.location.x = event.clientX - offset.x;
+            this.location.y = event.clientY - offset.y;
+
+            console.log("New location", this.location);
         },
         addOrder: function (event) {
             var offset = {
@@ -219,6 +240,22 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap");
+
+#map-container {
+    width: auto;
+    height: 400px;
+    overflow: scroll;
+    border: 3px dashed grey;
+    margin: 1rem auto;
+}
+
+#map {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: url("/img/polacks.jpg");
+    background-size: contain;
+}
 
 html {
     font-size: 16px; /* ensures 1rem = 16px reference */
