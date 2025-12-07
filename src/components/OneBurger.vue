@@ -11,9 +11,12 @@
                 Contains <span class="allergy">lactose</span>
             </li>
         </ul>
-        <p>Ordered: {{ amountOrdered }}</p>
-        <button @click="decrease">−</button>
-        <button @click="increase">+</button>
+        <div class="amount-ordered-container">
+            Amount:
+            <button @click="decrease">−</button>
+            {{ amountOrdered }}
+            <button @click="increase">+</button>
+        </div>
     </div>
 </template>
 
@@ -58,8 +61,13 @@ export default {
 .burger button {
     margin: 0 0.15rem;
 }
-.burger p {
-    color: yellow;
+.burger .amount-ordered-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem 0;
+    color: white;
+    gap: 0.25rem;
 }
 .burger img {
     display: block;
