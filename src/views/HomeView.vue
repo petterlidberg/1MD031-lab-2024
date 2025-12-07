@@ -1,7 +1,8 @@
 <template>
     <header>
-        <h1>Välkommen till BurgerHeaven</h1>
+        <h1>Welcome to BurgerHeaven Online</h1>
     </header>
+
     <main>
         <section class="burger-section">
             <h2>Select burger</h2>
@@ -29,6 +30,7 @@
                         type="text"
                         name="fullname"
                         placeholder="First- and Last name"
+                        v-model="fullName"
                     />
                 </p>
 
@@ -38,10 +40,11 @@
                         type="email"
                         name="email"
                         placeholder="E-mail address"
+                        v-model="email"
                     />
                 </p>
 
-                <p>Where living?</p>
+                <p>Please indicate your point of delivery</p>
                 <div id="map-container">
                     <div id="map" @click="setLocation">
                         <div
@@ -58,7 +61,7 @@
 
                 <p>
                     Payment options<br />
-                    <select name="payment">
+                    <select name="payment" v-model="payment">
                         <option>Credit card</option>
                         <option>Invoice</option>
                         <option>Cash on delivery</option>
@@ -68,19 +71,34 @@
                 <p>
                     Gender<br />
                     <label>
-                        <input type="radio" name="gender" value="male" />
+                        <input
+                            type="radio"
+                            id="male"
+                            value="male"
+                            v-model="gender"
+                        />
                         Male
                     </label>
                     <br />
 
                     <label>
-                        <input type="radio" name="gender" value="female" />
+                        <input
+                            type="radio"
+                            id="female"
+                            value="female"
+                            v-model="gender"
+                        />
                         Female
                     </label>
                     <br />
 
                     <label>
-                        <input type="radio" name="gender" value="nonbinary" />
+                        <input
+                            type="radio"
+                            id="nonbinary"
+                            value="nonbinary"
+                            v-model="gender"
+                        />
                         Non-binary
                     </label>
                     <br />
@@ -88,14 +106,14 @@
                     <label>
                         <input
                             type="radio"
-                            name="gender"
+                            id="undisclosed"
                             value="undisclosed"
-                            checked
+                            v-model="gender"
                         />
                         Do not wish to provide
                     </label>
                 </p>
-                <button type="submit" class="order-button">
+                <button type="submit" class="order-button" @click="placeOrder">
                     <svg
                         class="scooter-icon"
                         xmlns="http://www.w3.org/2000/svg"
@@ -177,6 +195,7 @@ const burgerMenuItems = [
     new MenuItem("Berger", 500, "/img/double-cheese-burger.png", false, false),
 ];
 
+// not in use
 // console.log(burgerMenuItems);
 
 export default {
@@ -187,18 +206,14 @@ export default {
     data: function () {
         return {
             burgers: menu,
-            burgerText: "Välj en burgare",
+            orderedBurgers: {},
             fullName: "",
             email: "",
-            streetName: "",
-            streetNumber: "",
-            payment: "SMS lån",
-            gender: "burgir",
-            orderedBurgers: {},
-
+            payment: "Credit card",
+            gender: "undisclosed",
             location: {
-                x: 0,
-                y: 0,
+                x: -50,
+                y: -50,
             },
         };
     },
@@ -215,23 +230,41 @@ export default {
                 y: event.currentTarget.getBoundingClientRect().top,
             };
 
-            this.location.x = event.clientX - offset.x;
-            this.location.y = event.clientY - offset.y;
+            this.location.x = event.clientX - offset.x - 10;
+            this.location.y = event.clientY - offset.y - 10;
 
             console.log("New location", this.location);
         },
-        addOrder: function (event) {
-            var offset = {
-                x: event.currentTarget.getBoundingClientRect().left,
-                y: event.currentTarget.getBoundingClientRect().top,
-            };
+        placeOrder() {
+            const items = Object.entries(this.orderedBurgers)
+                .filter(([name, amount]) => amount > 0)
+                .map(([name, amount]) => `${name} (${amount})`);
+
+            console.log("Sending order:", {
+                orderId: this.getOrderNumber(),
+                details: { x: this.location.x, y: this.location.y },
+                orderItems: items,
+                customer: {
+                    name: this.fullName,
+                    email: this.email,
+                    payment: this.payment,
+                    gender: this.gender,
+                },
+            });
+            // alert("Order placed");
             socket.emit("addOrder", {
                 orderId: this.getOrderNumber(),
                 details: {
-                    x: event.clientX - 10 - offset.x,
-                    y: event.clientY - 10 - offset.y,
+                    x: this.location.x,
+                    y: this.location.y,
                 },
-                orderItems: ["Beans", "Curry"],
+                orderItems: items,
+                customer: {
+                    name: this.fullName,
+                    email: this.email,
+                    payment: this.payment,
+                    gender: this.gender,
+                },
             });
         },
     },
@@ -240,22 +273,6 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap");
-
-#map-container {
-    width: auto;
-    height: 400px;
-    overflow: scroll;
-    border: 3px dashed grey;
-    margin: 1rem auto;
-}
-
-#map {
-    position: relative;
-    width: 1920px;
-    height: 1080px;
-    background: url("/img/polacks.jpg");
-    background-size: contain;
-}
 
 html {
     font-size: 16px; /* ensures 1rem = 16px reference */
@@ -276,18 +293,32 @@ nav ul {
 }
 
 header {
-    background-image: url("../img/polacks.jpg");
+    background-image: url("/img/burger-joint.png");
     background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     overflow: hidden;
     width: 100%;
-    height: 12.5rem; /* 200px */
-    opacity: 0.5;
+    height: 12.5rem;
+    position: relative;
+    margin: 0 auto;
+    height: 200px;
 }
 
 header h1 {
-    width: 40rem;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: "Agbalumo";
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 1);
     text-align: center;
+    margin: 0;
+    z-index: 10;
+    text-wrap: balance;
+    line-height: 1;
 }
 
 h2 {
@@ -376,5 +407,35 @@ input[type="radio"] {
 
 .order-button:hover .scooter-icon g {
     stroke: #fff;
+}
+
+#map-container {
+    width: auto;
+    height: 400px;
+    overflow: scroll;
+    border: 0.15rem dashed grey;
+    margin: 0.5rem auto;
+    padding: 0;
+}
+
+#map {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: url("/img/polacks.jpg");
+    background-size: contain;
+    margin: 0;
+    padding: 0;
+}
+.target {
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+    color: white;
+    font-size: 0.75rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    text-align: center;
+    line-height: 1.25rem;
 }
 </style>
